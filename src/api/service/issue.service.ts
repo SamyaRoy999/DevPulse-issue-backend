@@ -81,9 +81,9 @@ class IssueService {
     return res[0] || null;
   }
 
-  // async deleteIssue(id: number) {
-  //   await sql`DELETE FROM issues WHERE id = ${id}`;
-  // }
+  async deleteIssue(id: number) {
+    await sql`DELETE FROM issues WHERE id = ${id}`;
+  }
 }
 
 export default new IssueService();
