@@ -224,30 +224,30 @@ export const updateIssue = async (
     next(error);
   }
 };
+// delete
+export const deleteIssue = async (
+  req: CustomRequest,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const issueId = Number(req.params.id);
 
-// export const deleteIssue = async (
-//   req: CustomRequest,
-//   res: Response,
-//   next: NextFunction,
-// ) => {
-//   try {
-//     const issueId = Number(req.params.id);
+    if (isNaN(issueId)) {
+      sendRespons(res, { message: "Invalid issue ID, must be a number" }, 400);
+      return;
+    }
 
-//     if (isNaN(issueId)) {
-//       sendRespons(res, { message: "Invalid issue ID, must be a number" }, 400);
-//       return;
-//     }
+    const issue = await issueService.getIssueById(issueId);
+    if (!issue) {
+      sendRespons(res, { message: `No issue found with ID ${issueId}` }, 404);
+      return;
+    }
 
-//     const issue = await issueService.getIssueById(issueId);
-//     if (!issue) {
-//       sendRespons(res, { message: `No issue found with ID ${issueId}` }, 404);
-//       return;
-//     }
+    await issueService.deleteIssue(issueId);
 
-//     await issueService.deleteIssue(issueId);
-
-//     sendRespons(res, { message: "Issue deleted successfully" }, 200);
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+    sendRespons(res, { message: "Issue deleted successfully" }, 200);
+  } catch (error) {
+    next(error);
+  }
+};

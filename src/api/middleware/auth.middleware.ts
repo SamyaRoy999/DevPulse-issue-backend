@@ -36,7 +36,7 @@ export const authMiddleware = (
   req.user = decoded as unknown as UserPayload;
   next();
 };
-
+// authorizerole
 export const authorizeRole = (...roles: string[]) => {
   return (req: CustomRequest, res: Response, next: NextFunction) => {
     if (!roles.includes(req.user?.role ?? "")) {
