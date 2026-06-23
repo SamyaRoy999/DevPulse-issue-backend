@@ -4,7 +4,7 @@ import {
   createIssue,
   getAllIssues,
   getSingleIssue,
-  deleteIssue,
+  //   deleteIssue,
   updateIssue,
 } from "../controllers/issue.controller";
 
@@ -14,9 +14,9 @@ issueRouter.post("/issues", authMiddleware, createIssue);
 issueRouter.get("/issues", getAllIssues);
 issueRouter.get("/issues/:id", getSingleIssue);
 issueRouter.patch("/issues/:id", authMiddleware, updateIssue);
-issueRouter.delete(
-  "/issues/:id",
-  authMiddleware,
-  authorizeRole("maintainer"),
-  deleteIssue,
-);
+// issueRouter.delete(
+//   "/issues/:id",
+//   authMiddleware,
+//   authorizeRole("maintainer"),
+// //   deleteIssue,
+// );
